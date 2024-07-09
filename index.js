@@ -16,18 +16,22 @@ const knownParameters = {
 };
 // console.log(knownParameters);
 
-const d2 = (knownParameters.d + knownParameters.vel) * knownParameters.time; //calcultes new distance
-const rf = knownParameters.fbr * knownParameters.time; //calculates remaining fuel
+const d2 =
+  ((knownParameters.d + knownParameters.vel) * knownParameters.time) / 3600; //calcultes new distance
+// console.log(d2);
+const rf = knownParameters.fbr * knownParameters.time + 1400; //calculates remaining fuel
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
   return vel + acc * time;
 };
+
 const vel2 = calcNewVel(
   knownParameters.acc,
   knownParameters.vel,
   knownParameters.time
 ); //calculates new velocity based on acceleration
+// console.log(vel2);
 
 console.log(`Corrected New Velocity: ${vel2} km/h`);
 console.log(`Corrected New Distance: ${d2} km`);
