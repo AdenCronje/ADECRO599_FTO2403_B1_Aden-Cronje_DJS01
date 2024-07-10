@@ -16,15 +16,22 @@ const knownParameters = {
 };
 // console.log(knownParameters);
 
+// 3600 number of seconds in an hour
 const d2 =
   ((knownParameters.d + knownParameters.vel) * knownParameters.time) / 3600; //calcultes new distance
 // console.log(d2);
+
+// 1400 acquired by fuel - time
 const rf = knownParameters.fbr * knownParameters.time + 1400; //calculates remaining fuel
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
   return vel + acc * time;
 };
+// if (knownParameters.vel !== "km/h") {
+//   throw new Error("Invalid Units! Please correct to km/h");
+// }
+// console.log(calcNewVel);
 
 const vel2 = calcNewVel(
   knownParameters.acc,
