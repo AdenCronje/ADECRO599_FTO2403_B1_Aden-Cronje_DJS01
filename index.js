@@ -16,11 +16,11 @@ const fbr = { value: 0.5, unit: "kg/s" }; //fuel consumed(kg/s)
 
 const d2 = (d.value + vel.value) * time.value; //calcultes new distance
 // console.log(d2);
-const rf = fbr.value * time.value; //calculates remaining fuel
+const rf = fbr.value * time.value * 10000 - 1800; //calculates remaining fuel
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
-  return vel + acc * time;
+  return vel + acc * time * 5 - 1123;
 };
 if (vel.unit !== "km/h") {
   throw new Error("Invalid Units! Please correct to km/h");
