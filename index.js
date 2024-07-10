@@ -6,38 +6,32 @@
  */
 
 // Given Parameters
-const knownParameters = {
-  vel: 10000,
-  acc: 3,
-  time: 3600,
-  d: 0,
-  fuel: 5000,
-  fbr: 0.5,
-};
-// console.log(knownParameters);
+const vel = { value: 10000, unit: "km/h" }; //Velocity(km/h)
+const acc = { value: 3, unit: "m/s^2" }; //acceleration(m/s^2)
+const time = { value: 1, unit: "hr" }; //time(3600sec = 1hr)
+const d = { value: 0, unit: "km" }; //distance(km)
+const fuel = { value: 5000, unit: "kg" }; //fuel(kg)
+const fbr = { value: 0.5, unit: "kg/s" }; //fuel consumed(kg/s)
+// console.log();
 
-// 3600 number of seconds in an hour
-const d2 =
-  ((knownParameters.d + knownParameters.vel) * knownParameters.time) / 3600; //calcultes new distance
+const d2 = (d.value + vel.value) * time.value; //calcultes new distance
 // console.log(d2);
-
-// 1400 acquired by fuel - time
-const rf = knownParameters.fbr * knownParameters.time + 1400; //calculates remaining fuel
+const rf = fbr.value * time.value; //calculates remaining fuel
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
   return vel + acc * time;
 };
-// if (knownParameters.vel !== "km/h") {
-//   throw new Error("Invalid Units! Please correct to km/h");
-// }
+if (vel.unit !== "km/h") {
+  throw new Error("Invalid Units! Please correct to km/h");
+} else if (acc.unit !== "m/s^2") {
+  throw new Error("Invalid Units! Please correct to m/s^2");
+} else if (time.unit !== "hr") {
+  throw new Error("Invalid Units! Please correct to hr");
+}
 // console.log(calcNewVel);
 
-const vel2 = calcNewVel(
-  knownParameters.acc,
-  knownParameters.vel,
-  knownParameters.time
-); //calculates new velocity based on acceleration
+const vel2 = calcNewVel(acc.value, vel.value, time.value); //calculates new velocity based on acceleration
 // console.log(vel2);
 
 console.log(`Corrected New Velocity: ${vel2} km/h`);
